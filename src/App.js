@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import Playground from "./screens/PlaygroundScreen";
+import PlaygroundScreen from "./screens/PlaygroundScreen";
 import { PlaygroundProvider } from "./Providers/PlaygroundProvider";
 import { ModalProvider } from './Providers/ModalProvider';
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <PlaygroundProvider>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/playground/:folderId/:playgroundId" element={<Playground />} />
+          <Route path="/playground/:fileId/:folderId" element={<PlaygroundScreen />} />
         </Routes>
       </PlaygroundProvider>
       </ModalProvider>

@@ -1,79 +1,95 @@
-.right-container{
+.right-container {
     height: 100vh;
     overflow-y: scroll;
     padding: 20px;
-    .material-icons{
+
+    .material-icons {
         cursor: pointer;
     }
-    .header{
+
+    .header {
         display: flex;
         justify-content: space-between;
         padding: 10px 0;
         border-bottom: 1px solid black;
-        .add-folder{
+
+        .add-folder {
             display: flex;
             justify-content: center;
             align-items: center;
-            border: None;
+            border: none;
             background-color: white;
             cursor: pointer;
-
         }
-        .title{
+
+        .title {
             font-weight: 600;
             font-size: 30px;
-            span{
+
+            span {
                 font-weight: 400;
             }
         }
     }
-    .folder-container{
-        .folder-header{
+
+    .folder-container {
+        .folder-header {
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid black;
             padding: 20px 0;
-            .folder-header-item{
+
+            .folder-header-item {
                 display: flex;
                 gap: 20px;
                 align-items: center;
-                button{
+
+                button {
                     background-color: white;
                     border: none;
                     display: flex;
                     align-items: center;
                 }
-
             }
         }
-        .cards-container{
+
+        .cards-container {
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
-            gap:20px;
+            gap: 20px;
             justify-content: space-between;
-            .card{
+
+            .card {
                 display: flex;
+                flex-direction: row; /* Default layout */
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                padding: 12px;
+                width: 100%; /* Full width by default */
+                max-width: 320px; /* Restrict card's maximum width */
                 border-radius: 10px;
                 box-shadow: 2px 2px 5px gray;
                 cursor: pointer;
-                width: 43%;
-                gap: 10px;
-                justify-content: space-between;
-                align-items: center;
-                padding: 12px;
-                .title-container{
+                transition-duration: 0.5s;
+
+                img {
+                    width: 50px; /* Set a fixed width for the image */
+                    height: 50px; /* Set a fixed height for the image */
+                    object-fit: contain; /* Ensure the image maintains its aspect ratio */
+                }
+                
+
+                .title-container {
                     display: flex;
                     flex-direction: column;
-
-                }
-                .img{
-                    width: 50px;
                 }
             }
-            .card:hover{
+
+            .card:hover {
                 outline: 8px solid white;
-                box-shadow: 10px -10px 5 5px gray;
+                box-shadow: 10px -10px 5px gray;
             }
         }
     }

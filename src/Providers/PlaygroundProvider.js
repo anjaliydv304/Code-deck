@@ -1,3 +1,4 @@
+import { getDefaultNormalizer } from "@testing-library/react";
 import { createContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
 
@@ -60,7 +61,6 @@ export const PlaygroundProvider = ({ children }) => {
     return initialData;
   });
   const openModalFunction = () => setIsModalOpen(true);
-
   const createNewPlayground = (newPlayground) => {
     const { fileName, folderName, language } = newPlayground;
     const newFolders = [...folders];
@@ -156,6 +156,65 @@ export const PlaygroundProvider = ({ children }) => {
     setFolders(copiedFolders);
   };
 
+  const getDefaultCode=(fileId,folderId)=>{
+    for(let i=0;i<folders.length;i++){
+      if(folders[i].id===folderId){
+        for(let j=0;j<folders[i].files.length;j++){
+          const currentFile = folders[i].files[j];
+          if(fileId===currentFile.id){
+            return currentFile.code;
+          }
+        }
+      }
+    }
+  }
+
+  const updateLanguage = (fileId, folderId, language) => {
+    const newFolders=[...folders]
+    for(let i=0;i<newFolders.length;i++){
+      if(newFolders[i].id===folderId){
+        for(let j=0;j<newFolders[i].files.length;j++){
+          const currentFile=newFolders[i].files[j];
+          if(fileId==currentFile.id){
+            newFolders[i].files[j].code=defaultCode[language]
+            newFolders[i].files[j].language=language;
+          }
+        }
+      }
+    }
+    localStorage.setItem('data', JSON.stringify(folders));
+    setFolders(newFolders);
+  };
+  
+  const getLanguage=(fileId,folderId)=>{
+    
+    for(let i=0;i<folders.length;i++){
+      if(folders[i].id===folderId){
+        for(let j=0;j<folders[i].files.length;j++){
+          const currentFile = folders[i].files[j];
+          if(fileId===currentFile.id){
+            return currentFile.language;
+          }
+        }
+      }
+    }
+  }
+
+  const saveCode=(fileId,folderId,newCode)=>{
+    const newFolders=[...folders]
+    for(let i=0;i<folders.length;i++){
+      if(folders[i].id===folderId){
+        for(let j=0;j<folders[i].files.length;j++){
+          const currentFile = newFolders[i].files[j];
+          if(fileId===currentFile.id){
+            newFolders[i].files[j].code=newCode;
+          }
+        }
+      }
+    }
+    localStorage.setItem('data', JSON.stringify(newFolders));
+    setFolders(newFolders)
+  }
   useEffect(() => {
     if (!localStorage.getItem('data')) {
       localStorage.setItem('data', JSON.stringify(folders));
@@ -172,6 +231,10 @@ export const PlaygroundProvider = ({ children }) => {
     deleteFile,
     createPlayground,
     openModal:openModalFunction,
+    getDefaultCode,
+    getLanguage,
+    updateLanguage,
+    saveCode
   };
 
   return (

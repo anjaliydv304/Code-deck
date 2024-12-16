@@ -17,7 +17,7 @@ export const UpdateFileTitleModal = ()=>{
     }
     return <div className="modal-container">
 
-       <form className="modal-body" onsubmit={onSubmitModal}>
+       <form className="modal-body" onSubmit={onSubmitModal}>
 
        <span onClick={closeModal} className="material-icons close">close</span>
 
@@ -25,7 +25,7 @@ export const UpdateFileTitleModal = ()=>{
 
             <div style={createFolderStyles.inputContainer}>
 
-                <input required name="folderName" style={createFolderStyles.input} placeholder="Enter Folder Name"/>
+                <input required name="fileName" style={createFolderStyles.input} placeholder="Enter Folder Name"/>
 
                 <button style={createFolderStyles.btn} type="submit">Create Folder</button>
 

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import "./createModal.scss"
 import "./createPlaygroundModal.scss"
 import { ModalContext } from "../ModalProvider";
 import { PlaygroundContext } from "../PlaygroundProvider";
@@ -24,7 +23,8 @@ export const CreateFolderModal=()=> {
         createFolderStyles.inputContainer}>
         <input style= {createFolderStyles.input} placeholder="Enter Folder Name" name="folderName" required/>
         <button style= {createFolderStyles.btn} type="submit">Create Folder</button>
-        </div></form>
+        </div>
+    </form>
     </div>    
     
     }
@@ -34,6 +34,7 @@ export const createFolderStyles= {
         inputContainer: {
             display: 'flex',
             gap: 10
+            
         },
         input: {
             flexGrow: 1,
@@ -41,11 +42,11 @@ export const createFolderStyles= {
         },
         btn: {
 
-            backgroundColor: '#241F21',
+            backgroundColor: '#53ADC0',
 
                 border: 'none',
 
-                borderRadius: 4,
+                borderRadius: 6,
 
                 padding: '0px 10px',
 

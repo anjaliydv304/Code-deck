@@ -17,9 +17,12 @@
                 width: 100px;
             }
             h2{
-                color:white;
+                color:rgb(146, 144, 144);
             }
             button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 cursor: pointer;
                 height: 50px;
                 width: 90%;

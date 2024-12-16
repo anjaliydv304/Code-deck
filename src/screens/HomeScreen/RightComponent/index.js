@@ -3,10 +3,12 @@ import './index.scss';
 import { PlaygroundContext } from '../../../Providers/PlaygroundProvider';  // This is correct for folder management
 import { modalConstants, ModalContext } from '../../../Providers/ModalProvider';  // Correct import for ModalContext
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const Folder = ({ folderTitle, cards, folderId }) => {
-    const { deleteFolder, deleteFile, setModalPayload } = useContext(PlaygroundContext) || {};
-    const { openModal } = useContext(ModalContext);  // Correct import here for modal management
+    const { deleteFolder, deleteFile} = useContext(PlaygroundContext) || {};
+    const { openModal,setModalPayload } = useContext(ModalContext);  
+    const navigate = useNavigate();
 
     if (!openModal) {
         console.error('openModal is not available in context');
@@ -17,7 +19,7 @@ const Folder = ({ folderTitle, cards, folderId }) => {
     };
 
     const onEditFolderTitle = () => {
-        setModalPayload({ folderId });
+        setModalPayload(folderId );
         openModal(modalConstants.UPDATE_FOLDER_TITLE);
     };
 
@@ -30,7 +32,7 @@ const Folder = ({ folderTitle, cards, folderId }) => {
         <div className="folder-container">
             <div className="folder-header">
                 <div className="folder-header-item">
-                    <span className="material-icons folder-icon">folder</span>
+                    <span className="material-icons folder-icon" style={{color:"#FFCA29"}}>folder</span>
                     <span>{folderTitle}</span>
                 </div>
                 <div className="folder-header-item">
@@ -52,15 +54,18 @@ const Folder = ({ folderTitle, cards, folderId }) => {
                     const onDeleteFile = () => {
                         deleteFile(folderId, file.id); 
                     };
+                    const navigateToPlaygroundScreen=()=>{
+                        navigate(`/playground/${file.id}/${folderId}`)
+                    }
 
                     return (
-                        <div className="card" key={index}>
+                        <div className="card" key={index} onClick={navigateToPlaygroundScreen}>
                             <img src="logo.png" alt="File Icon" />
                             <div className="card-item">
                                 <span>{file?.title}</span>
                                 <span>Language: {file?.language}</span>
                             </div>
-                            <div className="card-item">
+                            <div className="card-item" >
                                 <span className="material-icons" onClick={onDeleteFile}>delete</span>
                                 <span className="material-icons" onClick={onEditFile}>edit</span>
                             </div>
@@ -80,10 +85,10 @@ Folder.propTypes = {
 
 const RightComponent = () => {
     const { folders } = useContext(PlaygroundContext);
-    const { openModal } = useContext(ModalContext);  // Correct import for ModalContext
+    const modalFeatures = useContext(ModalContext);  // Correct import for ModalContext
 
     const openCreateNewFolderModal = () => {
-        openModal(modalConstants.CREATE_FOLDER);
+       modalFeatures.openModal(modalConstants.CREATE_FOLDER)
     };
 
     return (

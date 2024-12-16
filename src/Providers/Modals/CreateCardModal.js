@@ -36,7 +36,7 @@ export const CreateCardModal=()=>{
         <form className="modal-body" onSubmit={onSubmitModal}>
         <span onClick={closeModal} className="material-icons close">close</span>
               <h1>Create New Playground</h1>
-              <div className="item">
+            <div className="item">
               <input name="fileName" placeholder="Enter card title" required/>
            </div>
            <div className="item">

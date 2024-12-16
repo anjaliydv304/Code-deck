@@ -19,7 +19,8 @@ export const ModalProvider = ({ children }) => {
     // Function to close the modal
     const closeModal = () => {
         setModalType(null);
-    };
+        setModalPayload(null);
+       };
 
     // Function to open a modal by setting its type
     const openModal = (type) => {
@@ -28,7 +29,7 @@ export const ModalProvider = ({ children }) => {
 
     // Modal context values that will be shared with the components
     const modalFeatures = {
-        openModal,
+        openModal:setModalType,
         closeModal,
         activeModal: modalType,
         modalPayload,
